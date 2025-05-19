@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "OmniPro Injector",
+  "version": "1.0.0",
+  "description": "Injeta automaticamente o script de automação OmniPro no painel VIPMax.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://vipmax.matrixdobrasil.ai/Painel/*"],
+      "js": ["content/main.bundle.js"],
+      "run_at": "document_idle",
+      "type": "module"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "omni-pro-injector",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write .",
+    "build": "esbuild src/main.js --bundle --outfile=content/main.bundle.js --format=iife"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "esbuild": "^0.25.4",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3"
+  }
+}
