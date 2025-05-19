@@ -1,15 +1,13 @@
 // src/utils/domService.js
 export class DomService {
-  constructor(config) {
+    constructor(config) {
     this.config = config;
   }
-
-  query(selector) {
-    return document.querySelector(selector);
+  query(selector, context = document) { 
+    return context.querySelector(selector);
   }
-
-  queryAll(selector) {
-    return Array.from(document.querySelectorAll(selector));
+  queryAll(selector, context = document) { 
+    return Array.from(context.querySelectorAll(selector));
   }
 
   applyStyles(selector, styles) {
