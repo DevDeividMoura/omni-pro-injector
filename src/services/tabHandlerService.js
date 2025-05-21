@@ -21,7 +21,7 @@ export class TabHandlerService {
     const matches = [];
     let m;
     while ((m = this.bracketRegex.exec(text))) {
-      matches.push({ start: m.index + 1, end: this.bracketRegex.lastIndex });
+      matches.push({ start: m.index, end: this.bracketRegex.lastIndex -1 });
     }
     return matches;
   }
@@ -34,10 +34,8 @@ export class TabHandlerService {
       const raw = el.innerText.trim();
       const transformed = this.transform(raw);
 
-      if (transformed !== raw) {
-        el.innerText = transformed;
-        await this.dom.waitNextFrame();
-      }
+      el.innerText = transformed;
+      await this.dom.waitNextFrame();
 
       const brackets = this.findBrackets(transformed);
       const selection = window.getSelection();
