@@ -8,7 +8,7 @@ import { TabHandlerService } from './services/tabHandlerService.js';
 const domService = new DomService(CONFIG);
 const clipboardService = new ClipboardService();
 const extractionService = new ExtractionService(CONFIG, domService, clipboardService);
-const tabHandler = new TabHandlerService(CONFIG, domService);
+const tabHandler = new TabHandlerService(CONFIG, domService, extractionService);
 
 // Injeta estilos em #tabs
 domService.applyStyles(CONFIG.selectors.tabs, {

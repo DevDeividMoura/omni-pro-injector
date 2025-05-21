@@ -1,9 +1,9 @@
 // src/services/extractionService.js
 export class ExtractionService  {
-  constructor(config, domService2, clipboardService2) {
+  constructor(config, domService, clipboardService) {
     this.config = config;
-    this.dom = domService2;
-    this.clip = clipboardService2;
+    this.dom = domService;
+    this.clip = clipboardService;
   }
   extractCPF() {
     const conv = this.dom.query(this.config.selectors.conversaContainer);

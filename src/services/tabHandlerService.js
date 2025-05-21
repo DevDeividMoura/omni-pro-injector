@@ -1,9 +1,14 @@
 // src/services/tabHandlerService.js
 export class TabHandlerService {
-  constructor(config, domService) {
+  constructor(config, domService, extractionService) {
     this.config = config;
     this.dom = domService;
     this.bracketRegex = /\[([^\]]+)\]/g;
+    this.extractionService = extractionService
+    this.keyActions = {
+      [this.config.keys.cpfCopy.toUpperCase()]: () => this.extractionService.extractCPF(),
+      [this.config.keys.nameCopy.toUpperCase()]: () => this.extractionService.extractName(),
+    };
   }
 
   capitalizeFirstName(fullName) {
@@ -59,13 +64,20 @@ export class TabHandlerService {
     }, 0);
   }
 
-  attachListeners(extractionService) {
-    document.addEventListener('keydown', e => {
-      if (e.ctrlKey && e.shiftKey) {
-        if (e.key.toUpperCase() === this.config.keys.cpfCopy) extractionService.extractCPF();
-        if (e.key.toUpperCase() === this.config.keys.nameCopy) extractionService.extractName();
+  handleCtrlShiftKeyDown(event) {
+    if (event.ctrlKey && event.shiftKey) {
+      const actionKey = event.key.toUpperCase();
+      const action = this.keyActions[actionKey]; 
+
+      if (action) {
+        event.preventDefault();
+        action();
       }
-    });
+    }
+  }
+
+  attachListeners() {
+    document.addEventListener('keydown', e => this.handleCtrlShiftKeyDown(e), true);
     document.addEventListener('keydown', e => this.handleTab(e), true);
   }
 
