@@ -21,7 +21,7 @@ export class TabHandlerService {
     const matches = [];
     let m;
     while ((m = this.bracketRegex.exec(text))) {
-      matches.push({ start: m.index, end: this.bracketRegex.lastIndex - 1 });
+      matches.push({ start: m.index + 1, end: this.bracketRegex.lastIndex });
     }
     return matches;
   }
